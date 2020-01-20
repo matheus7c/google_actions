@@ -1,0 +1,84 @@
+@danicuki
+
+INSTALAR
+node.js
+firebase tools
+(npm install -g firebase-tools)
+
+Ideias
+- App para criar paleta de cores do Adobe, a partir do actions
+
+
+-Dialogflow -> Onde desenvolvemos a aplicação.
+-Actions - Teste e uso da aplicação.
+
+---------------
+Default Welcome Intent -> Boas vindas personalizavel
+default FallBAck intent-> em Caso de não achar alguma resposta favorita, ele cai nessa intent
+---------------
+Default Welcome Intent
+-Responses>Text Response
+--Save após alterar.
+
+-----------------
+Integrations
+> google actions> Simulador(para testar), se não funcionar e de permission denied, tem que ir nos controles de atividades
+
+-------------
+Criar novos intents
+Intents> Create intent
+--utilizar nomes simples, sem acentos e letras maiusculos(pois na hora de escrever o código, tem que ser o nome exato).
+
+--------------
+Training phrases
+-frases para o google identificar as entidades (é variavel da frase: laranja-cor, cachorro-animal)
+
+--------------
+Actions and parameters
+-Qual a entidade que deve haver na fala
+
+----------
+Integrando com o código
+no intent deve habilitar o webhook>"enable webhook call for this intent"
+Fulfillment> Enable - Inline Editor> colar o código e alterar na linha 14 o nome do intent
+++++++
+
+'use strict';
+
+// Import the Dialogflow module from the Actions on Google client library.
+const {dialogflow} = require('actions-on-google');
+
+// Import the firebase-functions package for deployment.
+const functions = require('firebase-functions');
+
+// Instantiate the Dialogflow client.
+const app = dialogflow({debug: true});
+
+// Handle the Dialogflow intent named 'favorite color'.
+// The intent collects a parameter named 'color'.
+app.intent('Cor predileta', (conv, {color}) => {
+    const luckyNumber = color.length;
+    // Respond with the user's lucky number and end the conversation.
+    conv.close('Seu número favorito é ' + luckyNumber);
+});
+
+// Set the DialogflowApp object to handle the HTTPS POST request.
+exports.dialogflowFirebaseFulfillment = functions.https.onRequest(app);
+
++++++++++++
+
+
+rodar esses comandos em uma pasta
+npm -g install firebase-tools
+git clone https://github.com/actions-on-google/codelabs-nodejs
+
+firebase login --interactive
+firebase projects:list ## para saber o id do projeto
+firebase use --add <seu codigo>	
+npm install
+firebase deploy --project <seu código> //toda vez que fizer uma alteração deverá fazer deploy 
+
+
+----------------
+Follow intent
+pergunta depois de alguma resposta
