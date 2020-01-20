@@ -82,3 +82,87 @@ firebase deploy --project <seu código> //toda vez que fizer uma alteração dev
 ----------------
 Follow intent
 pergunta depois de alguma resposta
+
+
+
+
+-----------------------
+Textos do dontpad http://dontpad.com/assistant
+-----------------------
+Passo a passo:
+https://developers.google.com/assistant/codelabs
+
+@danicuki
+TecNoz
+https://www.youtube.com/user/danicuki
+
+https://console.actions.google.com/
+
+agora tem
+https://myaccount.google.com/activitycontrols
+
+fala galera, tudo certo? respode aí
+ 
+olaa
+
+
+	beleeeeeza
+
+https://myaccount.google.com/yourdata/assistant
+
+console do action
+
+
+https://console.actions.google.com/
+
+
+=========
+'use strict';
+
+// Import the Dialogflow module from the Actions on Google client library.
+const {dialogflow} = require('actions-on-google');
+
+// Import the firebase-functions package for deployment.
+const functions = require('firebase-functions');
+
+// Instantiate the Dialogflow client.
+const app = dialogflow({debug: true});
+
+// Handle the Dialogflow intent named 'favorite color'.
+// The intent collects a parameter named 'color'.
+app.intent('cor favorita', (conv, {color}) => {
+    const luckyNumber = color.length;
+    // Respond with the user's lucky number and end the conversation.
+    conv.close('Seu número da sorte ' + luckyNumber);
+});
+
+// Set the DialogflowApp object to handle the HTTPS POST request.
+exports.dialogflowFirebaseFulfillment = functions.https.onRequest(app);
+=======
+
+
+https://codelabs.developers.google.com/codelabs/actions-2/#0
+
+
+
+
+
+npm -g install firebase-tools
+git clone https://github.com/actions-on-google/codelabs-nodejs
+
+firebase login --interactive
+firebase projects:list ## para sabe o id do projeto
+firebase use --add <seu codigo>	
+npm install
+firebase deploy
+
+https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg
+
+google_assistant_welcome
+
+
+@danicukirls
+
+more audios
+https://actions.google.com/sounds/v1/cartoon/
+	
